@@ -13,6 +13,11 @@ import org.springframework.web.bind.annotation.RestController;
 import br.com.up.project.model.Employee;
 import br.com.up.project.service.EmployeeService;
 
+/**
+ * 
+ * @author Felipe Alex
+ * 
+ */
 @RestController
 @RequestMapping("api/employee")
 public class EmployeeController {
@@ -31,7 +36,8 @@ public class EmployeeController {
 	}
 
 	@GetMapping("/find/employees/should/request/{month}")
-	public List<Employee> findShouldRequestEmployeeVacation(@PathVariable(value = "month") int month) {
+	public List<Employee> findShouldRequestEmployeeVacation(
+			@PathVariable(value = "month") int month) {
 		return this.employeeService.findShouldRequestEmployeeVacation(month);
 	}
 
