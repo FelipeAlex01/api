@@ -13,11 +13,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Transient;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
 @Entity(name = "employee")
-public class Employee  implements Serializable {
+public class Employee implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
@@ -64,6 +65,9 @@ public class Employee  implements Serializable {
 
 	@Column(name = "password", nullable = false)
 	private String password;
+
+	@Transient
+	private String address;
 
 	public Long getRegistration() {
 		return registration;
@@ -182,6 +186,15 @@ public class Employee  implements Serializable {
 		}
 
 		return passwordMd5;
+	}
+
+	public String getAddress() {
+
+		StringBuilder sb = new StringBuilder();
+
+		sb.append(String.join(",", this.street, this.number, this.neighborhood, String.join("-", this.city, this.state)));				
+
+		return sb.toString();
 	}
 
 }

@@ -17,6 +17,10 @@ public class TeamService {
 	public Team insert(Team team) {
 		return this.teamRepository.save(team);
 	}
+	
+	public void delete(Long id) {
+		this.teamRepository.delete(id);
+	}
 
 	public List<Team> findAll() {
 		return this.teamRepository.findAll();

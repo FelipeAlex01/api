@@ -22,6 +22,8 @@ import br.com.up.project.repository.VacationRepository;
 @Service
 public class EmployeeService {
 
+	private static final int MONTH_REQUEST_VACATION = 2;
+
 	@Autowired
 	private EmployeeRepository employeeRepository;;
 
@@ -52,7 +54,7 @@ public class EmployeeService {
 			Instant instant = vacation.getFinalDate().toInstant();
 			LocalDateTime lastVacation = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
 			long year = ChronoUnit.YEARS.between(lastVacation.toLocalDate(), localDateNow);
-			if (year > 1 && year <= 2) {
+			if (year > 1 && year <= EmployeeService.MONTH_REQUEST_VACATION) {
 				employees.add(vacation.getEmployee());
 			}
 		}
